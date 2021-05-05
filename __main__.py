@@ -70,7 +70,7 @@ def yt_search():
 
 
 def shutdown():
-    os.system('cmd /k "shutdown /f /t 0"')
+    os.system('cmd /k "shutdown /s"')
 
 
 def wish_me():
