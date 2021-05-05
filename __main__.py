@@ -5,6 +5,8 @@ import speech_recognition as sr
 import wikipedia
 import webbrowser
 import os
+import urllib.request
+import re
 import smtplib
 # import yagmail
 # import urllib
@@ -73,6 +75,15 @@ def wish_me():
     speak("Hi I am Friday Sir. Please tell me how can I help you")
 
 
+def yt_search():
+    search_keyword = input("Podaj nazwę wideo: ")
+    search_nospaces = search_keyword.replace(" ", "+")
+    html = urllib.request.urlopen("https://www.youtube.com/results?search_query=" + search_nospaces)
+    video_ids = re.findall(r"watch\?v=(\S{11})", html.read().decode())
+    os.startfile(chromePath)
+    webbrowser.open("https://www.youtube.com/watch?v=" + video_ids[0])
+
+
 def take_command():
     r = sr.Recognizer()
     with sr.Microphone() as source:
@@ -104,6 +115,7 @@ if __name__ == '__main__':
     wish_me()
     while True:
         command = input("")
+#        command = take_command().lower()
         if 'wikipedia' in command:
             search_wikipedia(command)
 
@@ -124,4 +136,5 @@ if __name__ == '__main__':
 
         elif 'email' in command:
             email()
-
+        elif 'search youtube' in command:
+            yt_search()
