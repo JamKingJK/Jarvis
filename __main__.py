@@ -14,12 +14,6 @@ import smtplib
 # import smtplib, sslport = 587  # For starttlssmtp_server = "smtp.gmail.com"sender_email = "my@gmail.com"receiver_email = "your@gmail.com"password = input("Type your password and press enter:")message = """\Subject: Hi thereThis message is sent from Python."""context = ssl.create_default_context()with smtplib.SMTP(smtp_server, port) as server:server.ehlo()  # Can be omittedserver.starttls(context=context)server.ehlo()  # Can be omittedserver.login(sender_email, password)server.sendmail(sender_email, receiver_email, message)
 
 
-engine = pyttsx3.init('sapi5')
-voices = engine.getProperty('voices')
-print(voices[1].id)
-engine.setProperty('voice', voices[1].id)
-
-
 def speak(audio):
     engine.say(audio)
     engine.runAndWait()
@@ -96,17 +90,24 @@ def take_command():
     return query
 
 
+engine = pyttsx3.init('sapi5')
+voices = engine.getProperty('voices')
+print(voices[1].id)
+engine.setProperty('voice', voices[1].id)
+
+
 if __name__ == '__main__':
-    chromePath = "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe"
-    music_dir = "D:\\muzyka"
+    chromePath = input("Wprowadź ścieżkę do Chrome: ") or "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe"
+    music_dir = input("Wprowadź ścieżkę do muzyki: ") or "D:\\muzyka"
     yt = 'https://www.youtube.com/'
+    chrome_alias = ['open chrome', 'chrome', 'open google', 'google']
     wish_me()
     while True:
         command = input("")
         if 'wikipedia' in command:
             search_wikipedia(command)
 
-        elif 'open chrome' or 'chrome' or 'google' or 'open google' in command.lower():
+        elif any(alias in command for alias in chrome_alias):
             google_chrome()
 
         elif 'open youtube' in command:
