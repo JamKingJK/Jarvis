@@ -60,6 +60,17 @@ def current_date():
 def email():
     pass
 
+def yt_search():
+    search_keyword = input("Podaj nazwę wideo: ")
+    search_nospaces = search_keyword.replace(" ", "+")
+    html = urllib.request.urlopen("https://www.youtube.com/results?search_query=" + search_nospaces)
+    video_ids = re.findall(r"watch\?v=(\S{11})", html.read().decode())
+    os.startfile(chromePath)
+    webbrowser.open("https://www.youtube.com/watch?v=" + video_ids[0])
+
+
+def shutdown():
+    os.system('cmd /k "shutdown -t 0"')
 
 def wish_me():
     hour = int(datetime.datetime.now().hour)
@@ -73,15 +84,6 @@ def wish_me():
         speak("Idź spać")
 
     speak("Hi I am Friday Sir. Please tell me how can I help you")
-
-
-def yt_search():
-    search_keyword = input("Podaj nazwę wideo: ")
-    search_nospaces = search_keyword.replace(" ", "+")
-    html = urllib.request.urlopen("https://www.youtube.com/results?search_query=" + search_nospaces)
-    video_ids = re.findall(r"watch\?v=(\S{11})", html.read().decode())
-    os.startfile(chromePath)
-    webbrowser.open("https://www.youtube.com/watch?v=" + video_ids[0])
 
 
 def take_command():
@@ -138,3 +140,6 @@ if __name__ == '__main__':
             email()
         elif 'search youtube' in command:
             yt_search()
+        elif 'shutdown' in command:
+            shutdown()
+
