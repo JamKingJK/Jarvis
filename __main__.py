@@ -57,6 +57,11 @@ def current_date():
     print(f"{str_date}")
 
 
+def today():
+    time()
+    current_date()
+
+
 def email():
     pass
 
@@ -71,10 +76,12 @@ def yt_search():
 
 
 def shutdown():
+    speak("Shutdown will take place in a minute")
     os.system('cmd /k "shutdown /s"')
 
 
 def reboot():
+    speak("Reboot will take place in a minute")
     os.system('cmd /k "shutdown /r"')
 
 
@@ -120,6 +127,14 @@ if __name__ == '__main__':
     music_dir = input("Wprowadź ścieżkę do muzyki: ") or "D:\\muzyka"
     yt = 'https://www.youtube.com/'
     chrome_alias = ['open chrome', 'chrome', 'open google', 'google']
+    youtube_alias = ['open youtube', 'youtube', 'yt']
+    music_alias = ['play music', 'music', 'songs', 'play song', 'play songs']
+    time_alias = ['the time', 'time', 'hour', 'clock']
+    date_alias = ['date', 'the date', 'calendar']
+    email_alias = ['email', 'mail', 'send mail', 'send message', 'gmail']
+    today_alias = ['today', 'current day']
+    shutdown_alias = ['shutdown', 'turn off', 'close']
+    reboot_alias = ['reboot', 'restart']
     wish_me()
     while True:
         command = input("")
@@ -130,27 +145,31 @@ if __name__ == '__main__':
         elif any(alias in command for alias in chrome_alias):
             google_chrome()
 
-        elif 'open youtube' in command:
+        elif any(alias in command for alias in youtube_alias):
             youtube()
 
-        elif 'play music' in command:
+        elif any(alias in command for alias in music_alias):
             music()
 
-        elif 'the time' in command:
+        elif any(alias in command for alias in time_alias):
             time()
 
-        elif 'date' in command:
+        elif any(alias in command for alias in date_alias):
             current_date()
 
-        elif 'email' in command:
+        elif any(alias in command for alias in email_alias):
             email()
-        elif 'search youtube' in command:
+
+        elif any(alias in command for alias in today_alias):
+            today()
+
+        elif 'search video':
             yt_search()
-        elif 'shutdown' in command:
-            speak("Shutdown will take place in a minute")
+
+        elif any(alias in command for alias in shutdown_alias):
             shutdown()
-        elif 'reboot' in command:
-            speak("Reboot will take place in a minute")
+
+        elif any(alias in command for alias in reboot_alias):
             reboot()
 
 
