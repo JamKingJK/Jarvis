@@ -72,10 +72,13 @@ def yt_search():
 def shutdown():
     os.system('cmd /k "shutdown /s"')
 
+<<<<<<< HEAD
 
 def reboot():
     os.system('cmd /k "shutdown /r"')
 
+=======
+>>>>>>> main
 
 def wish_me():
     hour = int(datetime.datetime.now().hour)
