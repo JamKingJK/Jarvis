@@ -70,7 +70,12 @@ def yt_search():
 
 
 def shutdown():
-    os.system('cmd /k "shutdown -t 0"')
+    os.system('cmd /k "shutdown /s"')
+
+
+def reboot():
+    os.system('cmd /k "shutdown /r"')
+
 
 def wish_me():
     hour = int(datetime.datetime.now().hour)
@@ -117,7 +122,7 @@ if __name__ == '__main__':
     wish_me()
     while True:
         command = input("")
-#        command = take_command().lower()
+#       command = take_command().lower()
         if 'wikipedia' in command:
             search_wikipedia(command)
 
@@ -141,5 +146,10 @@ if __name__ == '__main__':
         elif 'search youtube' in command:
             yt_search()
         elif 'shutdown' in command:
+            speak("Shutdown will take place in a minute")
             shutdown()
+        elif 'reboot' in command:
+            speak("Reboot will take place in a minute")
+            reboot()
+
 
