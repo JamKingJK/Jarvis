@@ -60,6 +60,7 @@ def current_date():
 def email():
     pass
 
+
 def yt_search():
     search_keyword = input("Podaj nazwę wideo: ")
     search_nospaces = search_keyword.replace(" ", "+")
@@ -72,13 +73,10 @@ def yt_search():
 def shutdown():
     os.system('cmd /k "shutdown /s"')
 
-<<<<<<< HEAD
 
 def reboot():
     os.system('cmd /k "shutdown /r"')
 
-=======
->>>>>>> main
 
 def wish_me():
     hour = int(datetime.datetime.now().hour)
