@@ -81,13 +81,13 @@ def reboot():
 def wish_me():
     hour = int(datetime.datetime.now().hour)
     if 5 <= hour < 12:
-        speak("Miłego poranka")
+        speak("Good morning")
     elif 12 <= hour < 18:
-        speak("Dzień dobry")
+        speak("Hello")
     elif 18 <= hour < 24:
-        speak("Dobry wieczór")
+        speak("Good afternoon")
     else:
-        speak("Idź spać")
+        speak("Go to sleep")
 
     speak("Hi I am Friday Sir. Please tell me how can I help you")
 
